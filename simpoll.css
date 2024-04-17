@@ -1,24 +1,41 @@
-body {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    display:flex;
-    margin: 0px;
+
+.colored {
+    --main-color: rgb(2 5 211);
 }
 
+body {
+    display:flex;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0px;
+    padding: 10px;
+    justify-content:start;
+}
+
+
 .ticker {
+    
+    position: relative;
+    box-sizing: border-box;
+    /* background-color: beige; */
     display: flex;
+    align-content: end;
+    margin: 0px;
+    padding: 0px;
     width: 36px;
     height: 36px;
+    gap: 0px;
+    transition: width 200ms ease;
 
 }
 
 .tickerInput {
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
     border-radius: 20px;
-    border: 1px solid;
+    border: 1px solid ;
+    border-color: color-mix(in srgb, var(--main-color) 20%, white 80%);
     height: 100%;
     width: 100% ;
     position: relative;
@@ -28,6 +45,9 @@ body {
     font-family: inherit;
     font-size: inherit;
     font-style: inherit;
+    align-self: center;
+    outline-style: none;
+    transition: border-color 200ms ease;
 
 }
 
@@ -37,28 +57,61 @@ body {
 }
 
 .tickerButton {
+    background-color: color-mix(in srgb, var(--main-color) 20%, white 80%);
     box-sizing: border-box;
-    position: relative;
+    position: absolute;
     height: 30px;
     width: 30px;
     border-radius: 15px;
-    visibility:collapse;
+    border: 0px; 
+    visibility:hidden;
     opacity: 0%;
-    
+    padding: 1px;
+    top: 3px;
+    text-align: center;
+    vertical-align: middle;
+    line-height:28px;
+    font-size: 14px;
+    padding-top:2px;
+    /* transition: background-color 1800ms ease; */
+}
+
+.tickerButton:hover {
+    background-color: color-mix(in srgb, var(--main-color) 10%, white 90%) ;
+    /* transition: background-color 1800ms ease; */
 }
 
 .upButton {
-    margin-left: -33px;
-    margin-top: 3px;
+    right: 3px;
 }
 
 .downButton {
-    margin-right: -33px;
-    margin-top: 3px;
-    z-index: 2;
+    left: 3px;
+    z-index: 3;
 }
-.ticker:hover > .tickerButton {
+.ticker:hover > .tickerButton  {
     visibility: visible;
     opacity: 100%;
     transition: opacity 300ms ease;
+}
+
+.ticker:has(> .tickerInput:focus) {
+    width: 102px;
+}
+
+.ticker:has(> .tickerInput:focus) > .tickerButton {
+    visibility: visible;
+    opacity: 100%; 
+}
+
+.tickerInput:focus, .tickerInput:hover {
+    border: solid 1px;
+    border-color: var(--main-color);
+    outline-style: none;
+}
+
+.ticker:has(> .tickerButton:hover) > .tickerInput {
+    border: solid 1px;
+    border-color: var(--main-color);
+    outline-style: none;
 }
